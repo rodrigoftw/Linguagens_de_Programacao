@@ -2,10 +2,35 @@
 #include <stdlib.h>
 #include "libaluno.h"
 
-
 int main() 
 {
+	// funções 'criarAluno' 'inserirAluno' e 'exibirTodosOsAlunos' teoricamente estão funcionando
+	// teste simples abaixo realizado com sucesso
+	//listaDeAlunos lista;
+	//lista.inicio = NULL;
+	//inserirAluno(&lista, 1, "fabiano abreu");
+	//inserirAluno(&lista, 2, "Morgana Sousa");
+	//inserirAluno(&lista, 3, "Rodrigo Andrade");
+	//inserirAluno(&lista, 4, "Gustavo Barbosa");
+	//exibirTodosOsAlunos(&lista);
+	//system("PAUSE");
+
+	//excluirAluno(&lista, 3);
+	//exibirTodosOsAlunos(&lista);
+	//system("PAUSE");
+
+	// funções 'buscarAluno' e 'editarAluno' teoricamente estão funcionando
+	// teste simples abaixo realizado com sucesso
 	
+	/*printf("\t------------------------------------------------------------\n");
+	printf("\tINFORME A MATRICULA DO ALUNO QUE DESEJA ALTERAR: ");
+	int matricula;
+	scanf("%d", &matricula);
+	editarAluno(&lista, matricula);
+	
+	system("cls");
+	exibirTodosOsAlunos(&lista);
+	system("PAUSE");*/
 	
 	/*aluno a ;
 

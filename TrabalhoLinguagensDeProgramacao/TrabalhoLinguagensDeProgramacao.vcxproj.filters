@@ -23,5 +23,17 @@
     <ClInclude Include="libaluno.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="libboolean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libprofessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libdisciplina.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libturma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

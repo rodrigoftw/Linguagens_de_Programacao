@@ -147,6 +147,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libaluno.h" />
+    <ClInclude Include="libboolean.h" />
+    <ClInclude Include="libdisciplina.h" />
+    <ClInclude Include="libprofessor.h" />
+    <ClInclude Include="libturma.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
