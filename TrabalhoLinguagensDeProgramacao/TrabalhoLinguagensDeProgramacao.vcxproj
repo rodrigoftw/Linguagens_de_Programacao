@@ -143,6 +143,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="libaluno.c" />
+    <ClCompile Include="libdisciplina.c" />
+    <ClCompile Include="libprofessor.c" />
+    <ClCompile Include="libturma.c" />
     <ClCompile Include="Source.c" />
   </ItemGroup>
   <ItemGroup>

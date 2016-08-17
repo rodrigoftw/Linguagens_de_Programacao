@@ -1,9 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libaluno.h"
+#include "libprofessor.h"
+#include "libdisciplina.h"
 
 int main() 
 {
+	listaDeAlunos listaAluno;
+	listaAluno.inicio = NULL;
+	listaDeProfessores listaProfessor;
+	listaProfessor.inicio = NULL;
+	listaDeDisciplinas listaDisciplina;
+	listaDisciplina.inicio = NULL;
+
+	printf("-------------------- CADASTRO --------------------");
+
+
+
 	// funções 'criarAluno' 'inserirAluno' e 'exibirTodosOsAlunos' teoricamente estão funcionando
 	// teste simples abaixo realizado com sucesso
 	//listaDeAlunos lista;

@@ -1,8 +1,9 @@
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef LIBTURMA_H
+#define LIBTURMA_H
 #include "libaluno.h"
 #include "libprofessor.h"
 #include "libdisciplina.h"
+#include "libboolean.h"
 
 struct Turma
 {
@@ -15,27 +16,17 @@ struct Turma
 
 typedef struct Turma turma;
 
-struct ListaDeTurmas 
+struct ListaDeTurmas
 {
 	turma *inicio;
 };
 
 typedef struct ListaDeTurmas listaDeTurmas;
 
-turma *criarTurma(int codigo) 
-{
-	turma *trm = malloc(sizeof(turma));
-	trm->codigo = codigo;
-	trm->professorDaTurma = NULL;
-	trm->disciplinaDaTurma = NULL;
-	trm->alunosDaTurma->inicio = NULL;
-	trm->proximaTurma = NULL;
-	return trm;
-}
+turma *criarTurma(int codigo);
 
-turma *buscarTurma(listaDeTurmas *lista, int codigo) 
-{
+turma *buscarTurma(listaDeTurmas *lista, int codigo);
 
-}
+#endif // !LIBTURMA_H
 
 
