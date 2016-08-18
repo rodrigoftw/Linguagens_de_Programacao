@@ -63,14 +63,14 @@ int main()
 					system("cls");
 					printf("\n");
 					printf("---------------------------- ALUNOS CADASTRADOS -----------------------------\n");
-					if (listaAluno.inicio == NULL) 
-					{
-						printf("\tNENHUM ALUNO CADASTRADO...\n\n");
-					}
-					else
+					if (listaAluno.inicio != NULL) 
 					{
 						exibirTodosOsAlunos(&listaAluno);
 						printf("\n");
+					}
+					else
+					{
+						printf("\tNENHUM ALUNO CADASTRADO...\n\n");
 					}
 					printf("------------------------------- INSERIR ALUNO -------------------------------\n");
 					printf("\tINFORME A MATRICULA E O NOME DO ALUNO...\n");
@@ -98,13 +98,35 @@ int main()
 				case 2:
 					system("cls");
 					printf("\n");
+					printf("-------------------------- PROFESSORES CADASTRADOS --------------------------\n");
+					if (listaProfessor.inicio != NULL)
+					{
+						exibirTodosOsProfessores(&listaProfessor);
+						printf("\n");
+					}
+					else
+					{
+						printf("\tNENHUM PROFESSOR CADASTRADO...\n\n");
+					}
 					printf("----------------------------- INSERIR PROFESSOR -----------------------------\n");
 					printf("\tINFORME UM CÓDIGO(NUMÉRICO) E O NOME DO PROFESSOR...\n");
 					printf("\tCÓDIGO: ");
 					scanf("%d", &codigo);
+					getchar();
 					printf("\tNOME: ");
-					scanf("%s", nome);
-					inserirProfessor(&listaProfessor, codigo, nome);
+					gets_s(nome, 50);
+					printf("\n");
+					professor *prof = buscarProfessor(&listaProfessor, codigo);
+					if (prof == NULL)
+					{
+						inserirProfessor(&listaProfessor, codigo, nome);
+						printf("\tPROFESSOR INSERIDO COM SUCESSO.\n");
+					}
+					else
+					{
+						printf("\tNÃO FOI POSSÍVEL INSERIR O PROFESSOR. CÓDIGO JÁ CADASTRADO.\n");
+					}
+					system("pause");
 					system("cls");
 					break;
 				case 3:
