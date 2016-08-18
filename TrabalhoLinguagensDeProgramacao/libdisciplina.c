@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-disciplina *criarDisciplina(int codigo, char nome[50])
+disciplina *criarDisciplina(int codigo, char nome[51])
 {
 	disciplina *discip = malloc(sizeof(disciplina));
 	discip->codigo = codigo;
@@ -19,7 +19,7 @@ disciplina *buscarDisciplina(listaDeDisciplinas *lista, int codigo)
 
 	while (discipAux != NULL)
 	{
-		if (discipAux->codigo = codigo)
+		if (discipAux->codigo == codigo)
 		{
 			return discipAux;
 		}
@@ -41,7 +41,7 @@ void exibirTodasAsDisciplinas(listaDeDisciplinas *lista)
 	}
 }
 
-void inserirDisciplina(listaDeDisciplinas *lista, int codigo, char nome[50])
+void inserirDisciplina(listaDeDisciplinas *lista, int codigo, char nome[51])
 {
 	disciplina *discip = criarDisciplina(codigo, nome);
 

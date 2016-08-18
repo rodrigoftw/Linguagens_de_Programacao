@@ -132,13 +132,35 @@ int main()
 				case 3:
 					system("cls");
 					printf("\n");
+					printf("-------------------------- DISCIPLINAS CADASTRADAS --------------------------\n");
+					if (listaDisciplina.inicio != NULL)
+					{
+						exibirTodasAsDisciplinas(&listaDisciplina);
+						printf("\n");
+					}
+					else
+					{
+						printf("\tNENHUMA DISCIPLINA CADASTRADA...\n\n");
+					}
 					printf("---------------------------- INSERIR DISCIPLINA -----------------------------\n");
 					printf("\tINFORME UM CÓDIGO(NUMÉRICO) E O NOME DA DISCIPLINA...\n");
 					printf("\tCÓDIGO: ");
 					scanf("%d", &codigo);
+					getchar();
 					printf("\tNOME: ");
-					scanf("%s", nome);
-					inserirDisciplina(&listaDisciplina, codigo, nome);
+					gets_s(nome, 50);
+					printf("\n");
+					disciplina *discip = buscarDisciplina(&listaDisciplina, codigo);
+					if (discip == NULL)
+					{
+						inserirDisciplina(&listaDisciplina, codigo, nome);
+						printf("\tDISCIPLINA INSERIDA COM SUCESSO.\n");
+					}
+					else
+					{
+						printf("\tNÃO FOI POSSÍVEL INSERIR A DISCIPLINA. CÓDIGO JÁ CADASTRADO.\n");
+					}
+					system("pause");
 					system("cls");
 					break;
 				case 4:

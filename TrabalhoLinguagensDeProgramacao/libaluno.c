@@ -9,7 +9,7 @@ aluno *criarAluno(int matricula, char nome[50])
 {
 	aluno *aln = malloc(sizeof(aluno));
 	aln->matricula = matricula;
-	strcpy(aln->nome, nome);
+	strcpy_s(aln->nome, 50, nome);
 	aln->proximoAluno = NULL;
 	return aln;
 };
