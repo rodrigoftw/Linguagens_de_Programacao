@@ -1,3 +1,4 @@
+#pragma warning (disable : 4996)
 #include "libprofessor.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -68,8 +69,9 @@ void editarProfessor(listaDeProfessores *lista, int codigo)
 {
 	professor *prof = buscarProfessor(lista, codigo);
 
+	getchar();
 	printf("\tNOME: ");
-	scanf("%s", prof->nome);
+	gets_s(prof->nome, 50);
 }
 
 bool excluirProfessor(listaDeProfessores *lista, int codigo)

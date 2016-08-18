@@ -5,7 +5,7 @@
 struct Aluno
 {
 	int matricula;
-	char nome[50];
+	char nome[51];
 	struct Aluno *proximoAluno;
 };
 

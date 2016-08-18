@@ -5,7 +5,7 @@
 struct Disciplina
 {
 	int codigo;
-	char nome[50];
+	char nome[51];
 	struct Disciplina *proximaDisciplina;
 };
 

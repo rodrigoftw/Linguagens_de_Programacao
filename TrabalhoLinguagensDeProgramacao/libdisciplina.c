@@ -1,3 +1,4 @@
+#pragma warning (disable : 4996)
 #include "libdisciplina.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -68,8 +69,9 @@ void editarDisciplina(listaDeDisciplinas *lista, int codigo)
 {
 	disciplina *discip = buscarDisciplina(lista, codigo);
 
+	getchar();
 	printf("\tNOME: ");
-	scanf("%s", discip->nome);
+	gets_s(discip->nome, 50);
 }
 
 bool excluirDisciplina(listaDeDisciplinas *lista, int codigo)

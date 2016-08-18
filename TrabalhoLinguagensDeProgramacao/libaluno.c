@@ -1,3 +1,4 @@
+#pragma warning (disable : 4996)
 #include "libaluno.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,7 +9,7 @@ aluno *criarAluno(int matricula, char nome[50])
 {
 	aluno *aln = malloc(sizeof(aluno));
 	aln->matricula = matricula;
-	strcpy_s(aln->nome, 50, nome);
+	strcpy(aln->nome, nome);
 	aln->proximoAluno = NULL;
 	return aln;
 };
@@ -71,8 +72,9 @@ void editarAluno(listaDeAlunos *lista, int matricula)
 {
 	aluno *aln = buscarAluno(lista, matricula);
 
+	getchar();
 	printf("\tNOME: ");
-	scanf("%s", aln->nome);
+	gets_s(aln->nome, 50);
 }
 
 bool excluirAluno(listaDeAlunos *lista, int matricula)
