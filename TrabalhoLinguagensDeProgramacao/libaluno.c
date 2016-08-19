@@ -33,11 +33,11 @@ void exibirTodosOsAlunos(listaDeAlunos *lista)
 {
 	aluno *alnAux = lista->inicio;
 
-	printf("\tID\t NOME\n");
+	printf("\tMATRICULA\t NOME\n");
 
 	while (alnAux != NULL)
 	{
-		printf("\t%d\t %s\n", alnAux->matricula, alnAux->nome);
+		printf("\t%d\t\t %s\n", alnAux->matricula, alnAux->nome);
 		alnAux = alnAux->proximoAluno;
 	}
 }
@@ -72,9 +72,18 @@ void editarAluno(listaDeAlunos *lista, int matricula)
 {
 	aluno *aln = buscarAluno(lista, matricula);
 
-	getchar();
-	printf("\tNOME: ");
-	gets_s(aln->nome, 50);
+	if (aln != NULL)
+	{
+		printf("\tNOME: ");
+		gets_s(aln->nome, 50);
+		printf("\n");
+		printf("\tALUNO EDITADO COM SUCESSO.\n");
+	}
+	else
+	{
+		printf("\n");
+		printf("\tMATRICULA INFORMADA NÃO ESTA CADASTRADA.\n");
+	}
 }
 
 bool excluirAluno(listaDeAlunos *lista, int matricula)

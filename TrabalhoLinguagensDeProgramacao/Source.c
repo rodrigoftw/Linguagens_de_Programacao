@@ -6,6 +6,48 @@
 #include <stdlib.h>
 #include <locale.h>
 
+void alunosCadastrados(listaDeAlunos *lista) 
+{
+	printf("---------------------------- ALUNOS CADASTRADOS -----------------------------\n");
+	if (lista->inicio != NULL)
+	{
+		exibirTodosOsAlunos(lista);
+		printf("\n");
+	}
+	else
+	{
+		printf("\tNENHUM ALUNO CADASTRADO...\n\n");
+	}
+}
+
+void professoresCadastrados(listaDeProfessores *lista)
+{
+	printf("-------------------------- PROFESSORES CADASTRADOS --------------------------\n");
+	if (lista->inicio != NULL)
+	{
+		exibirTodosOsProfessores(lista);
+		printf("\n");
+	}
+	else
+	{
+		printf("\tNENHUM PROFESSOR CADASTRADO...\n\n");
+	}
+}
+
+void disciplinasCadastradas(listaDeDisciplinas *lista)
+{
+	printf("-------------------------- DISCIPLINAS CADASTRADAS --------------------------\n");
+	if (lista->inicio != NULL)
+	{
+		exibirTodasAsDisciplinas(lista);
+		printf("\n");
+	}
+	else
+	{
+		printf("\tNENHUMA DISCIPLINA CADASTRADA...\n\n");
+	}
+}
+
 int main() 
 {
 
@@ -17,6 +59,14 @@ int main()
 	listaProfessor.inicio = NULL;
 	listaDeDisciplinas listaDisciplina;
 	listaDisciplina.inicio = NULL;
+
+	// INSERÇÕES ESTATICAS
+	inserirAluno(&listaAluno, 1, "fabiano abreu");
+	inserirAluno(&listaAluno, 2, "rodrigo andrade");
+	inserirProfessor(&listaProfessor, 1, "roberio gomes");
+	inserirProfessor(&listaProfessor, 2, "alexandre");
+	inserirDisciplina(&listaDisciplina, 1, "computacao grafica");
+	inserirDisciplina(&listaDisciplina, 2, "computacao basica");
 
 	int matricula;
 	int codigo;
@@ -62,16 +112,9 @@ int main()
 				case 1:
 					system("cls");
 					printf("\n");
-					printf("---------------------------- ALUNOS CADASTRADOS -----------------------------\n");
-					if (listaAluno.inicio != NULL) 
-					{
-						exibirTodosOsAlunos(&listaAluno);
-						printf("\n");
-					}
-					else
-					{
-						printf("\tNENHUM ALUNO CADASTRADO...\n\n");
-					}
+					// exibi os alunos cadastrados ate o momento
+					alunosCadastrados(&listaAluno);
+
 					printf("------------------------------- INSERIR ALUNO -------------------------------\n");
 					printf("\tINFORME A MATRICULA E O NOME DO ALUNO...\n");
 					printf("\tMATRICULA: ");
@@ -98,16 +141,9 @@ int main()
 				case 2:
 					system("cls");
 					printf("\n");
-					printf("-------------------------- PROFESSORES CADASTRADOS --------------------------\n");
-					if (listaProfessor.inicio != NULL)
-					{
-						exibirTodosOsProfessores(&listaProfessor);
-						printf("\n");
-					}
-					else
-					{
-						printf("\tNENHUM PROFESSOR CADASTRADO...\n\n");
-					}
+					// exibi os professores cadastrados ate o momento
+					professoresCadastrados(&listaProfessor);
+
 					printf("----------------------------- INSERIR PROFESSOR -----------------------------\n");
 					printf("\tINFORME UM CÓDIGO(NUMÉRICO) E O NOME DO PROFESSOR...\n");
 					printf("\tCÓDIGO: ");
@@ -132,16 +168,9 @@ int main()
 				case 3:
 					system("cls");
 					printf("\n");
-					printf("-------------------------- DISCIPLINAS CADASTRADAS --------------------------\n");
-					if (listaDisciplina.inicio != NULL)
-					{
-						exibirTodasAsDisciplinas(&listaDisciplina);
-						printf("\n");
-					}
-					else
-					{
-						printf("\tNENHUMA DISCIPLINA CADASTRADA...\n\n");
-					}
+					// exibi as disciplinas cadastradas ate o momento
+					disciplinasCadastradas(&listaDisciplina);
+
 					printf("---------------------------- INSERIR DISCIPLINA -----------------------------\n");
 					printf("\tINFORME UM CÓDIGO(NUMÉRICO) E O NOME DA DISCIPLINA...\n");
 					printf("\tCÓDIGO: ");
@@ -179,36 +208,97 @@ int main()
 			} while (opcaoMenuInserir != 0);
 			break;
 		case 2:
-			system("cls");
-			printf("\n");
-			printf("------------------------------- MENU EDITAR --------------------------------\n");
-			printf("\t1 - EDITAR ALUNO\n");
-			printf("\t2 - EDITAR PROFESSOR\n");
-			printf("\t3 - EDITAR DISCIPLINA\n");
-			printf("\t4 - EDITAR TURMA\n");
-			printf("\t0 - VOLTAR AO MENU PRINCIPAL\n");
-			printf("----------------------------------------------------------------------------\n");
-			printf("\tESCOLHA A OPÇÃO DESEJADA: ");
-			scanf("%d", &opcaoMenuEditar);
-			//CONTINUAr
-			//...
-			system("cls");
+			do 
+			{
+				system("cls");
+				printf("\n");
+				printf("------------------------------- MENU EDITAR --------------------------------\n");
+				printf("\t1 - EDITAR ALUNO\n");
+				printf("\t2 - EDITAR PROFESSOR\n");
+				printf("\t3 - EDITAR DISCIPLINA\n");
+				printf("\t4 - EDITAR TURMA\n");
+				printf("\t0 - VOLTAR AO MENU PRINCIPAL\n");
+				printf("----------------------------------------------------------------------------\n");
+				printf("\tESCOLHA A OPÇÃO DESEJADA: ");
+				scanf("%d", &opcaoMenuEditar);
+
+				switch (opcaoMenuEditar)
+				{
+				case 1:
+					system("cls");
+					printf("\n");
+					alunosCadastrados(&listaAluno);
+					printf("-------------------------------- EDITAR ALUNO -------------------------------\n");
+					printf("\tINFORME A MATRICULA DO ALUNO PARA PODER EDITAR SEU NOME...\n");
+					printf("\tMATRICULA: ");
+					scanf("%d", &matricula);
+					getchar();
+					editarAluno(&listaAluno, matricula);
+					system("pause");
+					system("cls");
+					break;
+				case 2:
+
+				default:
+					break;
+				}
+			} while (opcaoMenuEditar != 0);
 			break;
 		case 3:
-			system("cls");
-			printf("\n");
-			printf("------------------------------- MENU EXIBIR --------------------------------\n");
-			printf("\t1 - EXIBIR ALUNO\n");
-			printf("\t2 - EXIBIR PROFESSOR\n");
-			printf("\t3 - EXIBIR DISCIPLINA\n");
-			printf("\t4 - EXIBIR TURMA\n");
-			printf("\t0 - VOLTAR AO MENU PRINCIPAL\n");
-			printf("----------------------------------------------------------------------------\n");
-			printf("\tESCOLHA A OPÇÃO DESEJADA: ");
-			scanf("%d", &opcaoMenuExibir);
-			//CONTINUAR
-			//...
-			system("cls");
+			do 
+			{
+				system("cls");
+				printf("\n");
+				printf("------------------------------- MENU EXIBIR --------------------------------\n");
+				printf("\t1 - EXIBIR ALUNO\n");
+				printf("\t2 - EXIBIR PROFESSOR\n");
+				printf("\t3 - EXIBIR DISCIPLINA\n");
+				printf("\t4 - EXIBIR TURMA\n");
+				printf("\t0 - VOLTAR AO MENU PRINCIPAL\n");
+				printf("----------------------------------------------------------------------------\n");
+				printf("\tESCOLHA A OPÇÃO DESEJADA: ");
+				scanf("%d", &opcaoMenuExibir);
+
+				switch (opcaoMenuExibir)
+				{
+				case 1:
+					system("cls");
+					printf("\n");
+					alunosCadastrados(&listaAluno);
+					system("pause");
+					system("cls");
+					break;
+				case 2:
+					system("cls");
+					printf("\n");
+					professoresCadastrados(&listaProfessor);
+					system("pause");
+					system("cls");
+					break;
+				case 3:
+					system("cls");
+					printf("\n");
+					disciplinasCadastradas(&listaDisciplina);
+					system("pause");
+					system("cls");
+					break;
+				case 4:
+					system("cls");
+					printf("\n");
+					// exibicao das turmas: implementar
+					system("pause");
+					system("cls");
+					break;
+				case 0:
+					system("cls");
+					break;
+				default:
+					break;
+				}
+
+				system("cls");
+			} while (opcaoMenuExibir != 0);
+			
 			break;
 		case 4:
 			system("cls");
