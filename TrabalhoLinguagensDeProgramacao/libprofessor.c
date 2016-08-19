@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-professor *criarProfessor(int codigo, char nome[50])
+professor *criarProfessor(int codigo, char nome[51])
 {
 	professor *prof = malloc(sizeof(professor));
 	prof->codigo = codigo;
@@ -41,7 +41,7 @@ void exibirTodosOsProfessores(listaDeProfessores *lista)
 	}
 }
 
-void inserirProfessor(listaDeProfessores *lista, int codigo, char nome[50])
+void inserirProfessor(listaDeProfessores *lista, int codigo, char nome[51])
 {
 	professor *prof = criarProfessor(codigo, nome);
 
@@ -68,10 +68,19 @@ void inserirProfessor(listaDeProfessores *lista, int codigo, char nome[50])
 void editarProfessor(listaDeProfessores *lista, int codigo)
 {
 	professor *prof = buscarProfessor(lista, codigo);
-
-	getchar();
-	printf("\tNOME: ");
-	gets_s(prof->nome, 50);
+	
+	if (prof != NULL)
+	{
+		printf("\tNOME: ");
+		gets_s(prof->nome, 50);
+		printf("\n");
+		printf("\tPROFESSOR EDITADO COM SUCESSO.\n");
+	}
+	else
+	{
+		printf("\n");
+		printf("\tCÓDIGO INFORMADO NÃO ESTÁ CADASTRADO.\n");
+	}
 }
 
 bool excluirProfessor(listaDeProfessores *lista, int codigo)

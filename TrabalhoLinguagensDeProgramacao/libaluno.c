@@ -5,7 +5,7 @@
 #include <string.h>
 
 
-aluno *criarAluno(int matricula, char nome[50])
+aluno *criarAluno(int matricula, char nome[51])
 {
 	aluno *aln = malloc(sizeof(aluno));
 	aln->matricula = matricula;
@@ -42,7 +42,7 @@ void exibirTodosOsAlunos(listaDeAlunos *lista)
 	}
 }
 
-void inserirAluno(listaDeAlunos *lista, int matricula, char nome[50])
+void inserirAluno(listaDeAlunos *lista, int matricula, char nome[51])
 {
 	aluno *aln = criarAluno(matricula, nome);
 
@@ -66,8 +66,6 @@ void inserirAluno(listaDeAlunos *lista, int matricula, char nome[50])
 	}
 }
 
-// talvez seja necessario alterar essa funcao
-// ver onde sera melhor colocar a verificacao se a funcao 'buscarAluno' não retorna o valor NULL
 void editarAluno(listaDeAlunos *lista, int matricula)
 {
 	aluno *aln = buscarAluno(lista, matricula);
@@ -82,7 +80,7 @@ void editarAluno(listaDeAlunos *lista, int matricula)
 	else
 	{
 		printf("\n");
-		printf("\tMATRICULA INFORMADA NÃO ESTA CADASTRADA.\n");
+		printf("\tMATRICULA INFORMADA NÃO ESTÁ CADASTRADA.\n");
 	}
 }
 

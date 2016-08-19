@@ -60,7 +60,7 @@ void inserirDisciplina(listaDeDisciplinas *lista, int codigo, char nome[51])
 				discipAux->proximaDisciplina = discip;
 				return;
 			}
-			discip = discip->proximaDisciplina;
+			discipAux = discipAux->proximaDisciplina;
 		}
 	}
 }
@@ -68,10 +68,19 @@ void inserirDisciplina(listaDeDisciplinas *lista, int codigo, char nome[51])
 void editarDisciplina(listaDeDisciplinas *lista, int codigo)
 {
 	disciplina *discip = buscarDisciplina(lista, codigo);
-
-	getchar();
-	printf("\tNOME: ");
-	gets_s(discip->nome, 50);
+	
+	if (discip != NULL)
+	{
+		printf("\tNOME: ");
+		gets_s(discip->nome, 50);
+		printf("\n");
+		printf("\tDISCIPLINA EDITADA COM SUCESSO.\n");
+	}
+	else
+	{
+		printf("\n");
+		printf("\tCÓDIGO INFORMADO NÃO ESTÁ CADASTRADO.\n");
+	}
 }
 
 bool excluirDisciplina(listaDeDisciplinas *lista, int codigo)
