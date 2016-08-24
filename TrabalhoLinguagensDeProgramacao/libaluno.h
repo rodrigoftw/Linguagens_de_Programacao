@@ -18,13 +18,13 @@ struct ListaDeAlunos
 
 typedef struct ListaDeAlunos listaDeAlunos;
 
-aluno *criarAluno(int matricula, char nome[50]);
+aluno *criarAluno(int matricula, char nome[51]);
 
 aluno *buscarAluno(listaDeAlunos *lista, int matricula);
 
 void exibirTodosOsAlunos(listaDeAlunos *lista);
 
-void inserirAluno(listaDeAlunos *lista, int matricula, char nome[50]);
+void inserirAluno(listaDeAlunos *lista, int matricula, char nome[51]);
 
 void editarAluno(listaDeAlunos *lista, int matricula);
 

@@ -28,3 +28,60 @@ turma *buscarTurma(listaDeTurmas *lista, int codigo)
 	}
 	return NULL;
 }
+
+void exibirTodasAsTurmas(listaDeTurmas *lista) 
+{
+	turma *trmAux = lista->inicio;
+
+	while (trmAux != NULL)
+	{
+		printf("\tCÓDIGO DA TURMA:\t%d\n", trmAux->codigo);
+		printf("\t\tCOD/MAT\tNOME\n");
+		printf("\tPROFESSOR\t%d\t%s\n", trmAux->professorDaTurma->codigo, trmAux->professorDaTurma->nome);
+		trmAux->proximaTurma;
+	}
+}
+
+turma *inserirTurma(listaDeTurmas *lista, int codigo) 
+{
+	turma *trm = criarTurma(codigo);
+
+	if (lista->inicio == NULL)
+	{
+		lista->inicio = trm;
+	}
+	else
+	{
+		turma *trmAux = lista->inicio;
+
+		while (true)
+		{
+			if (trmAux->proximaTurma == NULL)
+			{
+				trmAux->proximaTurma = trm;
+				break;
+			}
+			trmAux = trmAux->proximaTurma;
+		}
+	}
+	return trm;
+}
+
+bool inserirAlunoNaTurma(turma *trm, aluno *aln) 
+{
+
+}
+
+bool inserirProfessorNaTurma(turma *trm, professor *prof) 
+{
+	bool resultado = false;
+
+	if (trm->professorDaTurma == NULL)
+	{
+		trm->professorDaTurma->codigo = prof->codigo;
+		strcpy_s(trm->professorDaTurma->nome, 50, prof->nome);
+		trm->professorDaTurma->proximoProfessor = NULL;
+		resultado = true;
+	}
+	return resultado;
+}

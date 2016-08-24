@@ -27,6 +27,14 @@ turma *criarTurma(int codigo);
 
 turma *buscarTurma(listaDeTurmas *lista, int codigo);
 
+void exibirTodasAsTurmas(listaDeTurmas *lista);
+
+turma *inserirTurma(listaDeTurmas *lista, int codigo);
+
+bool inserirAlunoNaTurma(turma *trm, aluno *aln);
+
+bool inserirProfessorNaTurma(turma *trm, professor *prof);
+
 #endif // !LIBTURMA_H
 
 
