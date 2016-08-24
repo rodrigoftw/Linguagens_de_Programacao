@@ -85,3 +85,15 @@ bool inserirProfessorNaTurma(turma *trm, professor *prof)
 	}
 	return resultado;
 }
+
+bool inserirDisciplinaNaTurma(turma *trm, disciplina *discip) 
+{
+	bool resultado = false;
+
+	if (trm->disciplinaDaTurma == NULL)
+	{
+		trm->disciplinaDaTurma = discip;
+		resultado = true;
+	}
+	return resultado;
+}
