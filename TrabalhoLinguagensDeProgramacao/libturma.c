@@ -16,5 +16,15 @@ turma *criarTurma(int codigo)
 
 turma *buscarTurma(listaDeTurmas *lista, int codigo)
 {
+	turma *trmAux = lista->inicio;
 
+	while (trmAux != NULL)
+	{
+		if (trmAux->codigo == codigo)
+		{
+			return trmAux;
+		}
+		trmAux = trmAux->proximaTurma;
+	}
+	return NULL;
 }
