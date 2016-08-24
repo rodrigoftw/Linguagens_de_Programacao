@@ -9,7 +9,7 @@ turma *criarTurma(int codigo)
 	trm->codigo = codigo;
 	trm->professorDaTurma = NULL;
 	trm->disciplinaDaTurma = NULL;
-	trm->alunosDaTurma->inicio = NULL;
+	trm->alunosDaTurma = NULL;
 	trm->proximaTurma = NULL;
 	return trm;
 }
@@ -35,10 +35,12 @@ void exibirTodasAsTurmas(listaDeTurmas *lista)
 
 	while (trmAux != NULL)
 	{
-		printf("\tCÓDIGO DA TURMA:\t%d\n", trmAux->codigo);
-		printf("\t\tCOD/MAT\tNOME\n");
-		printf("\tPROFESSOR\t%d\t%s\n", trmAux->professorDaTurma->codigo, trmAux->professorDaTurma->nome);
-		trmAux->proximaTurma;
+		printf("-----------------------------------------------------------------------------\n");
+		printf("\tTURMA:\t%d\n", trmAux->codigo);
+		printf("\t\t\tCOD/MAT\t\tNOME\n");
+		printf("\tPROFESSOR\t%d\t\t%s\n", trmAux->professorDaTurma->codigo, trmAux->professorDaTurma->nome);
+
+		trmAux = trmAux->proximaTurma;
 	}
 }
 
@@ -78,9 +80,7 @@ bool inserirProfessorNaTurma(turma *trm, professor *prof)
 
 	if (trm->professorDaTurma == NULL)
 	{
-		trm->professorDaTurma->codigo = prof->codigo;
-		strcpy_s(trm->professorDaTurma->nome, 50, prof->nome);
-		trm->professorDaTurma->proximoProfessor = NULL;
+		trm->professorDaTurma = prof;
 		resultado = true;
 	}
 	return resultado;

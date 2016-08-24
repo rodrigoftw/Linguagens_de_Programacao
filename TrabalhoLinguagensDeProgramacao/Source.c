@@ -2,6 +2,7 @@
 #include "libaluno.h"
 #include "libprofessor.h"
 #include "libdisciplina.h"
+#include "libturma.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -59,6 +60,8 @@ int main()
 	listaProfessor.inicio = NULL;
 	listaDeDisciplinas listaDisciplina;
 	listaDisciplina.inicio = NULL;
+	listaDeTurmas listaTurma;
+	listaTurma.inicio = NULL;
 
 	// INSERÇÕES ESTATICAS
 	inserirAluno(&listaAluno, 1, "Fabiano Abreu");
@@ -73,6 +76,11 @@ int main()
 	inserirDisciplina(&listaDisciplina, 2, "Computacao Basica");
 	inserirDisciplina(&listaDisciplina, 3, "Linguagens de Programacao");
 
+
+	turma *trm = inserirTurma(&listaTurma, 1);
+	professor *prof = buscarProfessor(&listaProfessor, 1);
+	inserirProfessorNaTurma(trm, prof);
+	exibirTodasAsTurmas(&listaTurma);
 
 	/*int matricula;
 	int codigo;

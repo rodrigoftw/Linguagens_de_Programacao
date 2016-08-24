@@ -35,6 +35,8 @@ bool inserirAlunoNaTurma(turma *trm, aluno *aln);
 
 bool inserirProfessorNaTurma(turma *trm, professor *prof);
 
+bool inserirDisciplinaNaTurma(turma *trm, disciplina *discip);
+
 #endif // !LIBTURMA_H
 
 
