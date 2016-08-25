@@ -9,7 +9,7 @@ turma *criarTurma(int codigo)
 	trm->codigo = codigo;
 	trm->professorDaTurma = NULL;
 	trm->disciplinaDaTurma = NULL;
-	trm->alunosDaTurma = NULL;
+	trm->alunosDaTurma.inicio = NULL;
 	trm->proximaTurma = NULL;
 	return trm;
 }
@@ -39,7 +39,14 @@ void exibirTodasAsTurmas(listaDeTurmas *lista)
 		printf("\tTURMA:\t%d\n", trmAux->codigo);
 		printf("\t\t\tCOD/MAT\t\tNOME\n");
 		printf("\tPROFESSOR\t%d\t\t%s\n", trmAux->professorDaTurma->codigo, trmAux->professorDaTurma->nome);
-
+		printf("\tDISCIPLINA\t%d\t\t%s\n", trmAux->disciplinaDaTurma->codigo, trmAux->disciplinaDaTurma->nome);
+		
+		aluno *alnAux = trmAux->alunosDaTurma.inicio;
+		while (alnAux != NULL)
+		{
+			printf("\tALUNO\t\t%d\t\t%s\n", alnAux->matricula, alnAux->nome);
+			alnAux = alnAux->proximoAluno;
+		}
 		trmAux = trmAux->proximaTurma;
 	}
 }
@@ -69,9 +76,9 @@ turma *inserirTurma(listaDeTurmas *lista, int codigo)
 	return trm;
 }
 
-bool inserirAlunoNaTurma(turma *trm, aluno *aln) 
+void inserirAlunoNaTurma(turma *trm, aluno *aln) 
 {
-
+	inserirAluno(&trm->alunosDaTurma, aln->matricula, aln->nome);
 }
 
 bool inserirProfessorNaTurma(turma *trm, professor *prof) 
@@ -96,4 +103,19 @@ bool inserirDisciplinaNaTurma(turma *trm, disciplina *discip)
 		resultado = true;
 	}
 	return resultado;
+}
+
+void editarAlunoNaTurma(turma *trm, aluno *aln)
+{
+	inserirAluno(&trm->alunosDaTurma, aln->matricula, aln->nome);
+}
+
+void editarProfessorNaTurma(turma *trm, professor *prof) 
+{
+	trm->professorDaTurma = prof;
+}
+
+void editarDisciplinaNaTurma(turma *trm, disciplina *discip) 
+{
+	trm->disciplinaDaTurma = discip;
 }

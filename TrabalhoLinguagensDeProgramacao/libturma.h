@@ -10,7 +10,7 @@ struct Turma
 	int codigo;
 	professor *professorDaTurma;
 	disciplina *disciplinaDaTurma;
-	listaDeAlunos *alunosDaTurma;
+	listaDeAlunos alunosDaTurma;
 	struct Turma *proximaTurma;
 };
 
@@ -31,11 +31,17 @@ void exibirTodasAsTurmas(listaDeTurmas *lista);
 
 turma *inserirTurma(listaDeTurmas *lista, int codigo);
 
-bool inserirAlunoNaTurma(turma *trm, aluno *aln);
+void inserirAlunoNaTurma(turma *trm, aluno *aln);
 
 bool inserirProfessorNaTurma(turma *trm, professor *prof);
 
 bool inserirDisciplinaNaTurma(turma *trm, disciplina *discip);
+
+void editarAlunoNaTurma(turma *trm, aluno *aln);
+
+void editarProfessorNaTurma(turma *trm, professor *prof);
+
+void editarDisciplinaNaTurma(turma *trm, disciplina discip);
 
 #endif // !LIBTURMA_H
 

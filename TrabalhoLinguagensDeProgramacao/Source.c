@@ -62,12 +62,13 @@ int main()
 	listaDisciplina.inicio = NULL;
 	listaDeTurmas listaTurma;
 	listaTurma.inicio = NULL;
+	
 
 	// INSERÇÕES ESTATICAS
 	inserirAluno(&listaAluno, 1, "Fabiano Abreu");
 	inserirAluno(&listaAluno, 2, "Rodrigo Andrade");
 	inserirAluno(&listaAluno, 3, "Luis Augusto");
-	inserirAluno(&listaAluno, 4, "Morgana Rodrigues");
+	inserirAluno(&listaAluno, 4, "Morgana Almeida");
 	inserirProfessor(&listaProfessor, 1, "Roberio Gomes");
 	inserirProfessor(&listaProfessor, 2, "Alexandre Cavalcante");
 	inserirProfessor(&listaProfessor, 3, "Ciro Coelho");
@@ -78,8 +79,14 @@ int main()
 
 
 	turma *trm = inserirTurma(&listaTurma, 1);
-	professor *prof = buscarProfessor(&listaProfessor, 1);
+	professor *prof = buscarProfessor(&listaProfessor, 3);
 	inserirProfessorNaTurma(trm, prof);
+	disciplina *discip = buscarDisciplina(&listaDisciplina, 3);
+	inserirDisciplinaNaTurma(trm, discip);
+	aluno *aln = buscarAluno(&listaAluno, 1);
+	inserirAlunoNaTurma(trm, aln);
+	aln = buscarAluno(&listaAluno, 4);
+	inserirAlunoNaTurma(trm, aln);
 	exibirTodasAsTurmas(&listaTurma);
 
 	/*int matricula;
