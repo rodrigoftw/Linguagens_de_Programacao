@@ -76,16 +76,23 @@ turma *inserirTurma(listaDeTurmas *lista, int codigo)
 	return trm;
 }
 
-void inserirAlunoNaTurma(turma *trm, aluno *aln) 
-{
-	inserirAluno(&trm->alunosDaTurma, aln->matricula, aln->nome);
-}
-
-bool inserirProfessorNaTurma(turma *trm, professor *prof) 
+bool inserirAlunoNaTurma(listaDeAlunos *lista, turma *trm, int matricula)
 {
 	bool resultado = false;
+	aluno *aln = buscarAluno(lista, matricula);
+	if (aln != NULL)
+	{
+		inserirAluno(&trm->alunosDaTurma, aln->matricula, aln->nome);
+		resultado = true;
+	}
+	return resultado;
+}
 
-	if (trm->professorDaTurma == NULL)
+bool inserirProfessorNaTurma(listaDeProfessores *lista, turma *trm, int codigo) 
+{
+	bool resultado = false;
+	professor *prof = buscarProfessor(lista, codigo);
+	if (prof != NULL)
 	{
 		trm->professorDaTurma = prof;
 		resultado = true;
@@ -93,11 +100,11 @@ bool inserirProfessorNaTurma(turma *trm, professor *prof)
 	return resultado;
 }
 
-bool inserirDisciplinaNaTurma(turma *trm, disciplina *discip) 
+bool inserirDisciplinaNaTurma(listaDeDisciplinas *lista, turma *trm, int codigo) 
 {
 	bool resultado = false;
-
-	if (trm->disciplinaDaTurma == NULL)
+	disciplina *discip = buscarDisciplina(lista, codigo);
+	if (discip != NULL)
 	{
 		trm->disciplinaDaTurma = discip;
 		resultado = true;
@@ -118,4 +125,19 @@ void editarProfessorNaTurma(turma *trm, professor *prof)
 void editarDisciplinaNaTurma(turma *trm, disciplina *discip) 
 {
 	trm->disciplinaDaTurma = discip;
+}
+
+void excluirAlunoNaTurma(turma *trm, aluno *aln) 
+{
+
+}
+
+void excluirProfessorNaTurma(turma *trm) 
+{
+	trm->professorDaTurma = NULL;
+}
+
+void excluirDisciplinaNaTurma(turma *trm) 
+{
+	trm->disciplinaDaTurma = NULL;
 }

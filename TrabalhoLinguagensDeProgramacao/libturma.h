@@ -31,17 +31,23 @@ void exibirTodasAsTurmas(listaDeTurmas *lista);
 
 turma *inserirTurma(listaDeTurmas *lista, int codigo);
 
-void inserirAlunoNaTurma(turma *trm, aluno *aln);
+bool inserirAlunoNaTurma(listaDeAlunos *lista, turma *trm, int matricula);
 
-bool inserirProfessorNaTurma(turma *trm, professor *prof);
+bool inserirProfessorNaTurma(listaDeProfessores *lista, turma *trm, int codigo);
 
-bool inserirDisciplinaNaTurma(turma *trm, disciplina *discip);
+bool inserirDisciplinaNaTurma(listaDeDisciplinas *lista, turma *trm, int codigo);
 
 void editarAlunoNaTurma(turma *trm, aluno *aln);
 
 void editarProfessorNaTurma(turma *trm, professor *prof);
 
-void editarDisciplinaNaTurma(turma *trm, disciplina discip);
+void editarDisciplinaNaTurma(turma *trm, disciplina *discip);
+
+void excluirAlunoNaTurma(turma *trm, aluno *aln);
+
+void excluirProfessorNaTurma(turma *trm);
+
+void excluirDisciplinaNaTurma(turma *trm);
 
 #endif // !LIBTURMA_H
 
