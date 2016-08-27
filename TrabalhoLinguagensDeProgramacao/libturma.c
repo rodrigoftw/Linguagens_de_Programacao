@@ -38,17 +38,39 @@ void exibirTodasAsTurmas(listaDeTurmas *lista)
 		printf("-----------------------------------------------------------------------------\n");
 		printf("\tTURMA:\t%d\n", trmAux->codigo);
 		printf("\t\t\tCOD/MAT\t\tNOME\n");
-		printf("\tPROFESSOR\t%d\t\t%s\n", trmAux->professorDaTurma->codigo, trmAux->professorDaTurma->nome);
-		printf("\tDISCIPLINA\t%d\t\t%s\n", trmAux->disciplinaDaTurma->codigo, trmAux->disciplinaDaTurma->nome);
-		
-		aluno *alnAux = trmAux->alunosDaTurma.inicio;
-		while (alnAux != NULL)
+		if (trmAux->professorDaTurma != NULL) 
 		{
-			printf("\tALUNO\t\t%d\t\t%s\n", alnAux->matricula, alnAux->nome);
-			alnAux = alnAux->proximoAluno;
+			printf("\tPROFESSOR:\t%d\t\t%s\n", trmAux->professorDaTurma->codigo, trmAux->professorDaTurma->nome);
+		}
+		else 
+		{
+			printf("\tPROFESSOR:\tNENHUM PROFESSOR CADASTRADO.\n");
+		}
+		if (trmAux->disciplinaDaTurma != NULL) 
+		{
+			printf("\tDISCIPLINA:\t%d\t\t%s\n", trmAux->disciplinaDaTurma->codigo, trmAux->disciplinaDaTurma->nome);
+		}
+		else 
+		{
+			printf("\tDISCIPLINA:\tNENHUMA DISCIPLINA CADASTRADA.\n");
+		}
+
+		aluno *alnAux = trmAux->alunosDaTurma.inicio;
+		if (alnAux != NULL) 
+		{
+			while (alnAux != NULL)
+			{
+				printf("\tALUNO:\t\t%d\t\t%s\n", alnAux->matricula, alnAux->nome);
+				alnAux = alnAux->proximoAluno;
+			}
+		}
+		else
+		{
+			printf("\tALUNO:\t\tNENHUM PROFESSOR CADASTRADO.\n");
 		}
 		trmAux = trmAux->proximaTurma;
 	}
+	printf("-----------------------------------------------------------------------------\n");
 }
 
 turma *inserirTurma(listaDeTurmas *lista, int codigo) 
@@ -110,21 +132,6 @@ bool inserirDisciplinaNaTurma(listaDeDisciplinas *lista, turma *trm, int codigo)
 		resultado = true;
 	}
 	return resultado;
-}
-
-void editarAlunoNaTurma(turma *trm, aluno *aln)
-{
-	inserirAluno(&trm->alunosDaTurma, aln->matricula, aln->nome);
-}
-
-void editarProfessorNaTurma(turma *trm, professor *prof) 
-{
-	trm->professorDaTurma = prof;
-}
-
-void editarDisciplinaNaTurma(turma *trm, disciplina *discip) 
-{
-	trm->disciplinaDaTurma = discip;
 }
 
 void excluirAlunoNaTurma(turma *trm, aluno *aln) 

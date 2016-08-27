@@ -37,12 +37,6 @@ bool inserirProfessorNaTurma(listaDeProfessores *lista, turma *trm, int codigo);
 
 bool inserirDisciplinaNaTurma(listaDeDisciplinas *lista, turma *trm, int codigo);
 
-void editarAlunoNaTurma(turma *trm, aluno *aln);
-
-void editarProfessorNaTurma(turma *trm, professor *prof);
-
-void editarDisciplinaNaTurma(turma *trm, disciplina *discip);
-
 void excluirAlunoNaTurma(turma *trm, aluno *aln);
 
 void excluirProfessorNaTurma(turma *trm);
