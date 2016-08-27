@@ -564,10 +564,12 @@ int main()
 											if (resultado)
 											{
 												printf("\tDISCIPLINA ALTERADA COM SUCESSO.\n");
+												system("pause");
 											}
 											else
 											{
 												printf("\tCÓDIGO INFORMADO NÃO ESTÁ CADASTRADO.\n");
+												system("pause");
 											}
 										case 0:
 											break;

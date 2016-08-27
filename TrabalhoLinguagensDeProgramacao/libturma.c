@@ -66,7 +66,7 @@ void exibirTodasAsTurmas(listaDeTurmas *lista)
 		}
 		else
 		{
-			printf("\tALUNO:\t\tNENHUM PROFESSOR CADASTRADO.\n");
+			printf("\tALUNO:\t\tNENHUM ALUNO CADASTRADO.\n");
 		}
 		trmAux = trmAux->proximaTurma;
 	}
@@ -106,7 +106,7 @@ void exibirTurmaAtual(turma * trm)
 	}
 	else
 	{
-		printf("\tALUNO:\t\tNENHUM PROFESSOR CADASTRADO.\n");
+		printf("\tALUNO:\t\tNENHUM ALUNO CADASTRADO.\n");
 	}
 	printf("\n");
 }
