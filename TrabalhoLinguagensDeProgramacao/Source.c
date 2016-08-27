@@ -312,6 +312,7 @@ int main()
 							{
 								printf("\n");
 								printf("\tNÃO FOI POSSÍVEL INSERIR A TURMA. CÓDIGO JÁ CADASTRADO.\n");
+								system("pause");
 								break;
 							}
 
@@ -869,6 +870,7 @@ int main()
 												if (resultado)
 												{
 													printf("\tTURMA EXCLUÍDA COM SUCESSO.\n");
+													opcaoExluirTurma = 0;
 												}
 												else
 												{
