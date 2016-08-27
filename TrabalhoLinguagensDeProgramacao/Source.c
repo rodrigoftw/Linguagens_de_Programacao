@@ -169,6 +169,11 @@ int main()
 	inserirDisciplinaNaTurma(&listaDisciplina, trm, 3);
 	inserirAlunoNaTurma(&listaAluno, trm, 1);
 	inserirAlunoNaTurma(&listaAluno, trm, 2);
+	inserirTurma(&listaTurma, 2);
+	inserirTurma(&listaTurma, 3);
+	inserirTurma(&listaTurma, 4);
+	inserirTurma(&listaTurma, 5);
+	inserirTurma(&listaTurma, 6);
 
 	int matricula;
 	int codigo;
@@ -180,6 +185,8 @@ int main()
 	int opcaoMenuExcluir;
 	int opcaoInserirNaTurma;
 	int opcaoEditarTurma;
+	int opcaoExluirTurma;
+	char resposta;
 	bool resultado;
 	aluno *aln;
 
@@ -731,8 +738,167 @@ int main()
 							system("pause");
 							break;
 						case 4:
-							// implementar excluir turma
-							system("pause");
+							turmasCadastradas(&listaTurma);
+							printf("------------------------------ EXCLUIR TURMA -------------------------------\n");
+							printf("\tINFORME O CÓDIGO DA TURMA E ESCOLHA AS OPCÕES A SEGUIR...\n");
+							printf("\tCÓDIGO: ");
+							scanf("%d", &codigo);
+							trm = buscarTurma(&listaTurma, codigo);
+							if (trm != NULL)
+							{
+								system("cls");
+
+								do
+								{
+									printf("------------------------------ EXCLUIR TURMA -------------------------------\n");
+									printf("\t1 - EXCLUIR ALUNO\n");
+									printf("\t2 - EXCLUIR PROFESSOR\n");
+									printf("\t3 - EXCLUIR DISCIPLINA\n");
+									printf("\t4 - EXCLUIR A TURMA\n");
+									printf("\t0 - VOLTAR AO MENU ANTERIOR\n");
+									printf("----------------------------------------------------------------------------\n");
+									printf("\tESCOLHA A OPÇÃO DESEJADA: ");
+									scanf("%d", &opcaoExluirTurma);
+
+									system("cls");
+
+									switch (opcaoExluirTurma)
+									{
+										case 1:
+											if (trm->alunosDaTurma.inicio != NULL) 
+											{
+												alunosDaTurma(trm);
+												printf("-------------------------- EXCLUIR ALUNO DA TURMA --------------------------\n");
+												printf("\tINFORME A MATRÍCULA DO ALUNO...\n");
+												printf("\tMATRÍCULA: ");
+												scanf("%d", &matricula);
+												printf("\n");
+												resultado = excluirAlunoNaTurma(trm, matricula);
+												if (resultado)
+												{
+													printf("\tALUNO EXCLUÍDO COM SUCESSO.\n\n");
+												}
+												else
+												{
+													printf("\tMATRÍCULA INFORMADA NÃO ESTÁ CADASTRADA NA TURMA.\n");
+												}
+											}
+											else
+											{
+												printf("-------------------------- EXCLUIR ALUNO DA TURMA --------------------------\n");
+												printf("\tA TURMA NÃO POSSUI ALUNOS.\n\n");
+
+											}
+											system("pause");
+											break;
+										case 2:
+											if (trm->professorDaTurma != NULL) 
+											{
+												professorDaTurma(trm);
+												printf("------------------------ EXCLUIR PROFESSOR DA TURMA ------------------------\n");
+												printf("\tTEM CERTEZA QUE DESEJA EXCLUIR?\n");
+												printf("\tDIGITE 'S' PARA SIM OU 'N' PARA NÃO: ");
+												getchar();
+												scanf("%c", &resposta);
+												printf("\n");
+												if (resposta == 'S' || resposta == 's')
+												{
+													excluirProfessorNaTurma(trm);
+													printf("\tPROFESSOR EXCLUÍDO COM SUCESSO.\n");
+												}
+												else if (resposta == 'N' || resposta == 'n')
+												{
+													printf("\tOPERAÇÃO CANCELADA.\n");
+												}
+												else
+												{
+													printf("\tRESPOSTA INVÁLIDA.\n");
+												}
+											}
+											else
+											{
+												printf("------------------------ EXCLUIR PROFESSOR DA TURMA ------------------------\n");
+												printf("\tA TURMA NÃO POSSUI PROFESSOR.\n\n");
+											}
+											system("pause");
+											break;
+										case 3:
+											if (trm->disciplinaDaTurma != NULL) 
+											{
+												disciplinaDaTurma(trm);
+												printf("----------------------- EXCLUIR DISCIPLINA DA TURMA ------------------------\n");
+												printf("\tTEM CERTEZA QUE DESEJA EXCLUIR?\n");
+												printf("\tDIGITE 'S' PARA SIM OU 'N' PARA NÃO: ");
+												getchar();
+												scanf("%c", &resposta);
+												printf("\n");
+												if (resposta == 'S' || resposta == 's')
+												{
+													excluirDisciplinaNaTurma(trm);
+													printf("\tPROFESSOR EXCLUÍDO COM SUCESSO.\n");
+												}
+												else if (resposta == 'N' || resposta == 'n')
+												{
+													printf("\tOPERAÇÃO CANCELADA.\n");
+												}
+												else
+												{
+													printf("\tRESPOSTA INVÁLIDA.\n");
+												}
+											}
+											else
+											{
+												printf("----------------------- EXCLUIR DISCIPLINA DA TURMA ------------------------\n");
+												printf("\tA TURMA NÃO POSSUI DISCIPLINA.\n\n");
+											}
+											system("pause");
+											break;
+										case 4:
+											exibirTurmaAtual(trm);
+											printf("------------------------------ EXCLUIR TURMA -------------------------------\n");
+											printf("\tTEM CERTEZA QUE DESEJA EXCLUIR?\n");
+											printf("\tDIGITE 'S' PARA SIM OU 'N' PARA NÃO: ");
+											getchar();
+											scanf("%c", &resposta);
+											printf("\n");
+											if (resposta == 'S' || resposta == 's')
+											{
+												resultado = excluirTurma(&listaTurma, codigo);
+												if (resultado)
+												{
+													printf("\tTURMA EXCLUÍDA COM SUCESSO.\n");
+												}
+												else
+												{
+													printf("\tCÓDIGO INFORMADO NÃO ESTÁ CADASTRADO.\n");
+												}
+											}
+											else if (resposta == 'N' || resposta == 'n')
+											{
+												printf("\tOPERAÇÃO CANCELADA.\n");
+											}
+											else
+											{
+												printf("\tRESPOSTA INVÁLIDA.\n");
+											}
+											system("pause");
+											break;
+										case 0:
+											break;
+										default:
+											printf("\n");
+											printf("\tOPÇÃO INVÁLIDA\n");
+											system("pause");
+											break;
+									}
+									system("cls");
+								} while (opcaoExluirTurma != 0);
+							}
+							else
+							{
+								printf("\n");
+								printf("\tCÓDIGO INFORMADO NÃO ESTÁ CADASTRADO.\n");
+							}
 							break;
 						case 0:
 							break;

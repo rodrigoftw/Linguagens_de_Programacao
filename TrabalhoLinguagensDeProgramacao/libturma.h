@@ -29,6 +29,8 @@ turma *buscarTurma(listaDeTurmas *lista, int codigo);
 
 void exibirTodasAsTurmas(listaDeTurmas *lista);
 
+void exibirTurmaAtual(turma * trm);
+
 turma *inserirTurma(listaDeTurmas *lista, int codigo);
 
 bool inserirAlunoNaTurma(listaDeAlunos *lista, turma *trm, int matricula);
@@ -37,7 +39,9 @@ bool inserirProfessorNaTurma(listaDeProfessores *lista, turma *trm, int codigo);
 
 bool inserirDisciplinaNaTurma(listaDeDisciplinas *lista, turma *trm, int codigo);
 
-void excluirAlunoNaTurma(turma *trm, aluno *aln);
+bool excluirTurma(listaDeTurmas *lista, int codigo);
+
+bool excluirAlunoNaTurma(turma *trm, int matricula);
 
 void excluirProfessorNaTurma(turma *trm);
 

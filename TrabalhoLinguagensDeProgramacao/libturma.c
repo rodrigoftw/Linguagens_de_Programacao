@@ -73,6 +73,44 @@ void exibirTodasAsTurmas(listaDeTurmas *lista)
 	printf("-----------------------------------------------------------------------------\n");
 }
 
+void exibirTurmaAtual(turma * trm) 
+{
+	printf("-----------------------------------------------------------------------------\n");
+	printf("\tTURMA:\t%d\n", trm->codigo);
+	printf("\t\t\tCOD/MAT\t\tNOME\n");
+	if (trm->professorDaTurma != NULL)
+	{
+		printf("\tPROFESSOR:\t%d\t\t%s\n", trm->professorDaTurma->codigo, trm->professorDaTurma->nome);
+	}
+	else
+	{
+		printf("\tPROFESSOR:\tNENHUM PROFESSOR CADASTRADO.\n");
+	}
+	if (trm->disciplinaDaTurma != NULL)
+	{
+		printf("\tDISCIPLINA:\t%d\t\t%s\n", trm->disciplinaDaTurma->codigo, trm->disciplinaDaTurma->nome);
+	}
+	else
+	{
+		printf("\tDISCIPLINA:\tNENHUMA DISCIPLINA CADASTRADA.\n");
+	}
+
+	aluno *alnAux = trm->alunosDaTurma.inicio;
+	if (alnAux != NULL)
+	{
+		while (alnAux != NULL)
+		{
+			printf("\tALUNO:\t\t%d\t\t%s\n", alnAux->matricula, alnAux->nome);
+			alnAux = alnAux->proximoAluno;
+		}
+	}
+	else
+	{
+		printf("\tALUNO:\t\tNENHUM PROFESSOR CADASTRADO.\n");
+	}
+	printf("\n");
+}
+
 turma *inserirTurma(listaDeTurmas *lista, int codigo) 
 {
 	turma *trm = criarTurma(codigo);
@@ -134,9 +172,42 @@ bool inserirDisciplinaNaTurma(listaDeDisciplinas *lista, turma *trm, int codigo)
 	return resultado;
 }
 
-void excluirAlunoNaTurma(turma *trm, aluno *aln) 
+bool excluirTurma(listaDeTurmas *lista, int codigo) 
 {
+	turma *trmAtual = lista->inicio;
+	bool resultado = false;
 
+	// caso em que a turma a ser excluida esta na primeira posicao
+	if (lista->inicio->codigo == codigo)
+	{
+		lista->inicio = lista->inicio->proximaTurma;
+		free(trmAtual);
+		resultado = true;
+	}
+	else
+	{
+		turma *trmAnterior = trmAtual;
+		trmAtual = trmAtual->proximaTurma;
+
+		while (trmAtual != NULL)
+		{
+			if (trmAtual->codigo == codigo)
+			{
+				trmAnterior->proximaTurma = trmAtual->proximaTurma;
+				free(trmAtual);
+				resultado = true;
+				break;
+			}
+			trmAnterior = trmAtual;
+			trmAtual = trmAtual->proximaTurma;
+		}
+	}
+	return resultado;
+}
+
+bool excluirAlunoNaTurma(turma *trm, int matricula)
+{
+	return excluirAluno(&trm->alunosDaTurma, matricula);
 }
 
 void excluirProfessorNaTurma(turma *trm) 
