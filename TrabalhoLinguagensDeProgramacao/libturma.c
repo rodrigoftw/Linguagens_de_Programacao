@@ -35,7 +35,7 @@ void exibirTodasAsTurmas(listaDeTurmas *lista)
 
 	while (trmAux != NULL)
 	{
-		printf("-----------------------------------------------------------------------------\n");
+		printf("---------------------------------------------------------------------------\n");
 		printf("\tTURMA:\t%d\n", trmAux->codigo);
 		printf("\t\t\tCOD/MAT\t\tNOME\n");
 		if (trmAux->professorDaTurma != NULL) 
@@ -70,7 +70,7 @@ void exibirTodasAsTurmas(listaDeTurmas *lista)
 		}
 		trmAux = trmAux->proximaTurma;
 	}
-	printf("-----------------------------------------------------------------------------\n");
+	printf("---------------------------------------------------------------------------\n");
 }
 
 void exibirTurmaAtual(turma * trm) 
@@ -170,6 +170,85 @@ bool inserirDisciplinaNaTurma(listaDeDisciplinas *lista, turma *trm, int codigo)
 		resultado = true;
 	}
 	return resultado;
+}
+
+void atualizarTurmaPorEdicaoDeAluno(listaDeTurmas *lista, aluno *aln) 
+{
+	turma *trm = lista->inicio;
+	aluno *alunoDaTurma;
+
+	if (trm != NULL) 
+	{
+		while (trm != NULL)
+		{
+			alunoDaTurma = buscarAluno(&trm->alunosDaTurma, aln->matricula);
+			if (alunoDaTurma != NULL) 
+			{
+				strcpy_s(alunoDaTurma->nome, 50, aln->nome);
+			}
+			trm = trm->proximaTurma;
+		}
+	}
+}
+
+void atualizarTurmaPorExclusaoDeAluno(listaDeTurmas *lista, int matricula) 
+{
+	turma *trm = lista->inicio;
+
+	if (trm != NULL)
+	{
+		while (trm != NULL)
+		{
+			if (trm->alunosDaTurma.inicio != NULL) 
+			{
+				excluirAluno(&trm->alunosDaTurma, matricula);
+			}
+			trm = trm->proximaTurma;
+		}
+	}
+}
+
+void atualizarTurmaPorExclusaoDeProfessor(listaDeTurmas *lista, int codigo) 
+{
+	turma *trm = lista->inicio;
+	professor *prof = NULL;
+
+	if (trm != NULL) 
+	{
+		while (trm != NULL)
+		{
+			if (trm->professorDaTurma != NULL && trm->professorDaTurma->codigo == codigo) 
+			{
+				// atribuicao feita apenas para usar a funcao free posteriormente
+				prof = trm->professorDaTurma;
+				trm->professorDaTurma = NULL;
+				
+			}
+			trm = trm->proximaTurma;
+		}
+		free(prof);
+	}
+}
+
+void atualizarTurmaPorExclusaoDeDisciplina(listaDeDisciplinas *lista, int codigo) 
+{
+	turma *trm = lista->inicio;
+	disciplina *discip = NULL;
+
+	if (trm != NULL)
+	{
+		while (trm != NULL)
+		{
+			if (trm->disciplinaDaTurma != NULL && trm->disciplinaDaTurma->codigo == codigo)
+			{
+				// atribuicao feita apenas para usar a funcao free posteriormente
+				discip = trm->disciplinaDaTurma;
+				trm->disciplinaDaTurma = NULL;
+			}
+			trm = trm->proximaTurma;
+		}
+		free(discip);
+	}
 }
 
 bool excluirTurma(listaDeTurmas *lista, int codigo) 

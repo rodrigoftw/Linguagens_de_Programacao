@@ -52,7 +52,7 @@ void disciplinasCadastradas(listaDeDisciplinas *lista)
 	}
 }
 
-// exibir o codigo das das turmas cadastradas ate o momento
+// exibir o codigo das turmas cadastradas ate o momento
 void turmasCadastradas(listaDeTurmas *lista) 
 {
 	printf("---------------------------- TURMAS CADASTRADAS ----------------------------\n");
@@ -174,9 +174,6 @@ int main()
 	inserirAlunoNaTurma(&listaAluno, trm, 2);
 	inserirTurma(&listaTurma, 2);
 	inserirTurma(&listaTurma, 3);
-	inserirTurma(&listaTurma, 4);
-	inserirTurma(&listaTurma, 5);
-	inserirTurma(&listaTurma, 6);
 
 	int matricula;
 	int codigo;
@@ -492,7 +489,12 @@ int main()
 							printf("\tMATRICULA: ");
 							scanf("%d", &matricula);
 							getchar();
-							editarAluno(&listaAluno, matricula);
+							aln = editarAluno(&listaAluno, matricula);
+							// atualizar o nome do aluno nas turma que ele esta cadastrado
+							if (aln != NULL) 
+							{
+								atualizarTurmaPorEdicaoDeAluno(&listaTurma, aln);
+							}
 							system("pause");
 							break;
 						case 2:
@@ -726,6 +728,7 @@ int main()
 								if (resultado)
 								{
 									printf("\tALUNO EXCLUÍDO COM SUCESSO.\n");
+									atualizarTurmaPorExclusaoDeAluno(&listaTurma, matricula);
 								}
 								else
 								{
@@ -752,6 +755,7 @@ int main()
 								if (resultado)
 								{
 									printf("\tPROFESSOR EXCLUÍDO COM SUCESSO.\n");
+									atualizarTurmaPorExclusaoDeProfessor(&listaTurma, codigo);
 								}
 								else
 								{
@@ -778,6 +782,7 @@ int main()
 								if (resultado)
 								{
 									printf("\tDISCIPLINA EXCLUÍDA COM SUCESSO.\n");
+									atualizarTurmaPorExclusaoDeDisciplina(&listaTurma, codigo);
 								}
 								else
 								{

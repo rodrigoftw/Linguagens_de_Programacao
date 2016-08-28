@@ -92,7 +92,6 @@ bool excluirProfessor(listaDeProfessores *lista, int codigo)
 	if (lista->inicio->codigo == codigo)
 	{
 		lista->inicio = lista->inicio->proximoProfessor;
-		free(profAtual);
 		resultado = true;
 	}
 	else
@@ -105,7 +104,7 @@ bool excluirProfessor(listaDeProfessores *lista, int codigo)
 			if (profAtual->codigo == codigo)
 			{
 				profAnterior->proximoProfessor = profAtual->proximoProfessor;
-				free(profAtual);
+				profAtual->proximoProfessor = NULL;
 				resultado = true;
 				break;
 			}
@@ -114,4 +113,5 @@ bool excluirProfessor(listaDeProfessores *lista, int codigo)
 		}
 	}
 	return resultado;
+	// funcao free sera usada na funcao atualizarTurmaPorExclusaoDeProfessor
 }

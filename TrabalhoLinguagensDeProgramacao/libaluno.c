@@ -1,5 +1,6 @@
 #pragma warning (disable : 4996)
 #include "libaluno.h"
+#include "libturma.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -66,7 +67,7 @@ void inserirAluno(listaDeAlunos *lista, int matricula, char nome[51])
 	}
 }
 
-void editarAluno(listaDeAlunos *lista, int matricula)
+aluno *editarAluno(listaDeAlunos *lista, int matricula)
 {
 	aluno *aln = buscarAluno(lista, matricula);
 
@@ -82,6 +83,7 @@ void editarAluno(listaDeAlunos *lista, int matricula)
 		printf("\n");
 		printf("\tMATRICULA INFORMADA NÃO ESTÁ CADASTRADA.\n");
 	}
+	return aln;
 }
 
 bool excluirAluno(listaDeAlunos *lista, int matricula)

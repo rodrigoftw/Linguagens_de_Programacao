@@ -39,6 +39,14 @@ bool inserirProfessorNaTurma(listaDeProfessores *lista, turma *trm, int codigo);
 
 bool inserirDisciplinaNaTurma(listaDeDisciplinas *lista, turma *trm, int codigo);
 
+void atualizarTurmaPorEdicaoDeAluno(listaDeTurmas *lista, aluno *aln);
+
+void atualizarTurmaPorExclusaoDeAluno(listaDeTurmas * lista, int matricula);
+
+void atualizarTurmaPorExclusaoDeProfessor(listaDeTurmas * lista, int codigo);
+
+void atualizarTurmaPorExclusaoDeDisciplina(listaDeDisciplinas *lista, int codigo);
+
 bool excluirTurma(listaDeTurmas *lista, int codigo);
 
 bool excluirAlunoNaTurma(turma *trm, int matricula);

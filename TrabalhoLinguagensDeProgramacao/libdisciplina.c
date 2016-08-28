@@ -92,7 +92,6 @@ bool excluirDisciplina(listaDeDisciplinas *lista, int codigo)
 	if (lista->inicio->codigo == codigo)
 	{
 		lista->inicio = lista->inicio->proximaDisciplina;
-		free(discipAtual);
 		resultado = true;
 	}
 	else
@@ -105,9 +104,9 @@ bool excluirDisciplina(listaDeDisciplinas *lista, int codigo)
 			if (discipAtual->codigo == codigo)
 			{
 				discipAnterior->proximaDisciplina = discipAtual->proximaDisciplina;
-				free(discipAtual);
 				resultado = true;
 				break;
+				// funcao free sera usada na funcao atualizarTurmaPorExclusaoDeDisciplina
 			}
 			discipAnterior = discipAtual;
 			discipAtual = discipAtual->proximaDisciplina;

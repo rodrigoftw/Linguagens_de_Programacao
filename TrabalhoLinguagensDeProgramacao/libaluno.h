@@ -26,7 +26,7 @@ void exibirTodosOsAlunos(listaDeAlunos *lista);
 
 void inserirAluno(listaDeAlunos *lista, int matricula, char nome[51]);
 
-void editarAluno(listaDeAlunos *lista, int matricula);
+aluno *editarAluno(listaDeAlunos *lista, int matricula);
 
 bool excluirAluno(listaDeAlunos *lista, int matricula);
 
