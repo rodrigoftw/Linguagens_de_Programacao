@@ -1,0 +1,167 @@
+to criarBarco :xpos :ypos
+    if :xpos > 500 [stop]
+    pu
+        setpos ( list :xpos :ypos )
+        setpc [58 64 71]
+        setfc [58 64 71]
+        fd 1
+        pd
+        lt 90
+        fd 55
+        rt 60
+        fd 40
+        rt 120
+        fd 150
+        rt 120
+        fd 40
+        rt 60
+        fd 55
+        pu
+        rt 90
+        fd 10
+        pd
+        fill
+        pu
+        bk 10
+        pd
+
+    pu
+        setpos ( list :xpos :ypos )
+        fd 1
+        fd 35
+        lt 90
+        fd 5
+        rt 90
+        setpc [101 69 21]
+        setfc [101 69 21]
+        pd
+        fd 1
+        fd 60
+        rt 90
+        fd 10
+        rt 90
+        fd 1
+        fd 60
+        rt 90
+        fd 5
+        pu
+        rt 90
+        bk 26
+        fd 60
+        pd
+        fill
+        pu
+        fd 1
+        fd 25
+        lt 90
+        fd 5
+        pd
+        setpc [0 0 0]
+        lt 30
+        fd 40
+        lt 120
+        fd 40
+        pu
+        home
+end
+
+to apagarBarco :xpos :ypos
+    if :xpos > 500 [stop]
+    pu
+        setpos ( list :xpos :ypos )
+        setpc [255 255 255]
+        setfc [255 255 255]
+        fd 1
+        pd
+        lt 90
+        fd 55
+        rt 60
+        fd 40
+        rt 120
+        fd 150
+        rt 120
+        fd 40
+        rt 60
+        fd 55
+        pu
+        rt 90
+        fd 10
+        pd
+        fill
+        pu
+        bk 10
+        pd
+
+    pu
+        setpos ( list :xpos :ypos )
+        fd 1
+        fd 35
+        lt 90
+        fd 5
+        rt 90
+        setpc [255 255 255]
+        setfc [255 255 255]
+        pd
+        fd 1
+        fd 60
+        rt 90
+        fd 10
+        rt 90
+        fd 1
+        fd 60
+        rt 90
+        fd 5
+        pu
+        rt 90
+        bk 26
+        fd 60
+        pd
+        fill
+        pu
+        fd 1
+        fd 25
+        lt 90
+        fd 5
+        pd
+        setpc [255 255 255]
+        lt 30
+        fd 40
+        lt 120
+        fd 40
+        pu
+        home
+end
+
+to barcoNavegando :xpos :ypos
+    criarBarco :xpos :ypos
+    wait 10
+    apagarBarco :xpos :ypos
+    barcoNavegando :xpos+10 :ypos
+end
+
+to criarMar
+    pu
+    setpc [0 0 0]
+    lt 90
+    fd 1000
+    bk 1000
+    home
+    setpc [34 131 242]
+    pu
+    bk 50
+    pd
+    setfc [34 131 242]
+    fill
+    home
+    lt 90
+    fd 1000
+    bk 1000
+    home
+end
+
+to main
+    hideturtle
+    criarMar
+    barcoNavegando -400 1
+end
+
