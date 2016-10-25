@@ -67,16 +67,24 @@ end
 
 to apagarchuva :xpos :ypos
 
-setpencolor [255 255 255]
+	setpencolor [255 255 255]
 
-if :xpos > 1000 [stop]
+	if :ypos < 0 [stop]
 
-pu
-setpos(list :xpos :ypos)
-pd
-fd 10
+	pu
+	setpos(list :xpos :ypos)
+	pd
+	fd 10
 
-apagarchuva :xpos+20 :ypos
+	repeat 50 [
+		if :xpos > 500 [stop]
+		apagarchuva :xpos+20 :ypos
+	]
+	repeat 10 [
+		apagarchuva :xpos :ypos-20
+	]
+
+	apagarchuva :xpos :ypos
 
 end
 
@@ -88,6 +96,7 @@ to barcoNavegando :xpos :ypos
     wait 10
     apagarBarco :xpos :ypos
     barcoNavegando :xpos+10 :ypos
+
 end
 
 to criarBarco :xpos :ypos
@@ -159,16 +168,16 @@ end
 
 to criarchuva :xpos :ypos
 
-setpencolor [175 195 218]
+	setpencolor [175 195 218]
 
-if :xpos > 1000 [stop]
+	if :xpos > 500 [stop]
 
-pu
-setpos(list :xpos :ypos)
-pd
-fd 10
+		pu
+		setpos(list :xpos :ypos)
+		pd
+		fd 10
 
-criarchuva :xpos+20 :ypos
+	criarchuva :xpos+20 :ypos
 
 end
 
@@ -181,11 +190,11 @@ to criarmar
 	lt 90
 	fd 500
 	lt 90
-	fd 300
+	fd 499
 	lt 90
 	fd 1000
 	lt 90
-	fd 300
+	fd 499
 	lt 90
 	fd 500
 	pu
@@ -201,19 +210,23 @@ end
 to main
 	hideturtle
 	criarMar
-	criarchuva -200 190
-	apagarchuva -200 190
-	criarchuva -200 170
-	apagarchuva -200 170
-	criarchuva -200 150
-	apagarchuva -200 150
-	criarchuva -200 130
-	apagarchuva -200 130
-	criarchuva -200 110
-	apagarchuva -200 110
-	criarchuva -200 90
-	apagarchuva -200 90
-	barcoNavegando -450 0
+	repeat 3 [
+
+		barcoNavegando -450 0
+		moverchuva -500 190
+		apagarchuva -500 190
+		barcoNavegando -450 0
+	]
+
+end
+
+to moverchuva :xpos :ypos
+
+	if :ypos < 0 [stop]
+	criarchuva :xpos :ypos
+	wait 30
+	moverchuva :xpos :ypos-20
+
 end
 
 to timer :time
@@ -223,5 +236,13 @@ to timer :time
 	timer :time-1
 end
 
-Make "xpos -280
-Make "ypos 0
+Make "for.final 520
+Make "for.initial 500
+Make "for.instr [apagarchuva :xpos :ypos-20 repeat 10 [if :xpos > 500 [stop] repeat 50 [apagarchuva :xpos+20 :ypos]]]
+Make "for.step 500
+Make "for.tester [:for.initial > :for.final]
+Make "for.values [i :xpos :xpos+20 500]
+Make "for.var "i
+Make "i 500
+Make "xpos 520
+Make "ypos 10
