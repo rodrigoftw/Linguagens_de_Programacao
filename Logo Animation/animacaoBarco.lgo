@@ -1,107 +1,6 @@
-to apagarBarco :xpos :ypos
-    if :xpos > 450 [stop]
-    pu
-        setpos ( list :xpos :ypos )
-        setpc [255 255 255]
-        setfc [255 255 255]
-        fd 1
-        pd
-        lt 90
-        fd 55
-        rt 60
-        fd 40
-        rt 120
-        fd 150
-        rt 120
-        fd 40
-        rt 60
-        fd 55
-        pu
-        rt 90
-        fd 10
-        pd
-        fill
-        pu
-        bk 10
-        pd
-
-    pu
-        setpos ( list :xpos :ypos )
-        fd 1
-        fd 35
-        lt 90
-        fd 5
-        rt 90
-        setpc [255 255 255]
-        setfc [255 255 255]
-        pd
-        fd 1
-        fd 60
-        rt 90
-        fd 10
-        rt 90
-        fd 1
-        fd 60
-        rt 90
-        fd 5
-        pu
-        rt 90
-        bk 26
-        fd 60
-        pd
-        fill
-        pu
-        fd 1
-        fd 25
-        lt 90
-        fd 5
-        pd
-        setpc [255 255 255]
-        lt 30
-        fd 40
-        lt 120
-        fd 40
-        pu
-        home
-end
-
-to apagarchuva :xpos :ypos
-
-	setpencolor [255 255 255]
-
-	if :ypos < 0 [stop]
-
-	pu
-	setpos(list :xpos :ypos)
-	pd
-	fd 10
-
-	repeat 50 [
-		if :xpos > 500 [stop]
-		apagarchuva :xpos+20 :ypos
-	]
-	repeat 10 [
-		apagarchuva :xpos :ypos-20
-	]
-
-	apagarchuva :xpos :ypos
-
-end
-
-to barcoNavegando :xpos :ypos
-
-    if :xpos > 450 [stop]
-
-    criarBarco :xpos :ypos
-    wait 10
-    apagarBarco :xpos :ypos
-    barcoNavegando :xpos+10 :ypos
-
-end
-
 to criarBarco :xpos :ypos
-    if :xpos > 450 [stop]
-    pu
+    if :xpos > 455 [stop]
+        pu
         setpos ( list :xpos :ypos )
         setpc [58 64 71]
         setfc [58 64 71]
@@ -126,7 +25,7 @@ to criarBarco :xpos :ypos
         bk 10
         pd
 
-    pu
+        pu
         setpos ( list :xpos :ypos )
         fd 1
         fd 35
@@ -166,19 +65,113 @@ to criarBarco :xpos :ypos
         home
 end
 
+to apagarBarco :xpos :ypos
+    if :xpos > 455 [stop]
+        pu
+        setpos ( list :xpos :ypos )
+        setpc [255 255 255]
+        setfc [255 255 255]
+        fd 1
+        pd
+        lt 90
+        fd 55
+        rt 60
+        fd 40
+        rt 120
+        fd 150
+        rt 120
+        fd 40
+        rt 60
+        fd 55
+        pu
+        rt 90
+        fd 10
+        pd
+        fill
+        pu
+        bk 10
+        pd
+
+        pu
+        setpos ( list :xpos :ypos )
+        fd 1
+        fd 35
+        lt 90
+        fd 5
+        rt 90
+        setpc [255 255 255]
+        setfc [255 255 255]
+        pd
+        fd 1
+        fd 60
+        rt 90
+        fd 10
+        rt 90
+        fd 1
+        fd 60
+        rt 90
+        fd 5
+        pu
+        rt 90
+        bk 26
+        fd 60
+        pd
+        fill
+        pu
+        fd 1
+        fd 25
+        lt 90
+        fd 5
+        pd
+        setpc [255 255 255]
+        lt 30
+        fd 40
+        lt 120
+        fd 40
+        pu
+        home
+end
+
+to barcoNavegando :xpos :ypos
+    if :xpos > 455 [stop]
+        criarBarco :xpos :ypos
+        wait 10
+        apagarBarco :xpos :ypos
+        barcoNavegando :xpos+10 :ypos
+end
+
 to criarchuva :xpos :ypos
-
 	setpencolor [175 195 218]
-
 	if :xpos > 500 [stop]
-
 		pu
 		setpos(list :xpos :ypos)
 		pd
 		fd 10
+	    criarchuva :xpos+20 :ypos
+end
 
-	criarchuva :xpos+20 :ypos
+to moverchuva :xpos :ypos
+    if :ypos < 0 [stop]
+        criarchuva :xpos :ypos
+        wait 30
+        moverchuva :xpos :ypos-20
+end
 
+to apagarchuva :xpos :ypos
+	setpencolor [255 255 255]
+	if :xpos > 500 [stop]
+        pu
+        setpos(list :xpos :ypos)
+        pd
+        fd 10
+        apagarchuva :xpos+20 :ypos
+end
+
+to moverApagarChuva :xpos :ypos
+    if :ypos < 0 [stop]
+        apagarchuva :xpos :ypos
+        wait 30
+        moverApagarChuva :xpos :ypos-20  
 end
 
 to criarmar
@@ -210,39 +203,7 @@ end
 to main
 	hideturtle
 	criarMar
-	repeat 3 [
-
-		barcoNavegando -450 0
-		moverchuva -500 190
-		apagarchuva -500 190
-		barcoNavegando -450 0
-	]
-
+	barcoNavegando -450 0
+	moverchuva -500 190
+	moverApagarChuva -500 190
 end
-
-to moverchuva :xpos :ypos
-
-	if :ypos < 0 [stop]
-	criarchuva :xpos :ypos
-	wait 30
-	moverchuva :xpos :ypos-20
-
-end
-
-to timer :time
-	if :time<1 [stop]
-	print :time
-	wait 60
-	timer :time-1
-end
-
-Make "for.final 520
-Make "for.initial 500
-Make "for.instr [apagarchuva :xpos :ypos-20 repeat 10 [if :xpos > 500 [stop] repeat 50 [apagarchuva :xpos+20 :ypos]]]
-Make "for.step 500
-Make "for.tester [:for.initial > :for.final]
-Make "for.values [i :xpos :xpos+20 500]
-Make "for.var "i
-Make "i 500
-Make "xpos 520
-Make "ypos 10
